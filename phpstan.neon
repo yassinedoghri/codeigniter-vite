@@ -1,0 +1,16 @@
+parameters:
+	level: 9
+	paths:
+		- src
+		- tests
+	bootstrapFiles:
+		- vendor/codeigniter4/framework/system/Test/bootstrap.php
+	scanDirectories:
+		- vendor/codeigniter4/framework/system/Helpers
+	codeigniter:
+		additionalConfigNamespaces:
+			- CodeIgniterVite\Config
+		additionalServices:
+			- CodeIgniterVite\Config\Services
+	ignoreErrors:
+		- '#Call to an undefined method Pest\\PendingCalls\\TestCall\:\:expect\(\)#'

@@ -1,0 +1,35 @@
+{
+  "name": "codeigniter-vite",
+  "version": "1.0.0",
+  "description": "A simple ViteJS integration for CodeIgniter4 projects.",
+  "license": "MIT",
+  "private": true,
+  "author": {
+    "name": "Yassine Doghri",
+    "url": "https://yassinedoghri.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yassinedoghri/codeigniter-vite.git"
+  },
+  "scripts": {
+    "prettier": "prettier --check .",
+    "prettier:fix": "prettier --write .",
+    "commit": "cz"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/exec": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "commitizen": "^4.3.1",
+    "conventional-changelog-conventionalcommits": "^8.0.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "prettier": "^3.4.2",
+    "semantic-release": "^24.2.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

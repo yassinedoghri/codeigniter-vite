@@ -1,0 +1,86 @@
+{
+  "branches": [
+    "main"
+  ],
+  "plugins": [
+    [
+      "@semantic-release/commit-analyzer",
+      {
+        "preset": "conventionalcommits",
+        "releaseRules": [
+          {
+            "type": "docs",
+            "scope": "README",
+            "release": "patch"
+          },
+          {
+            "type": "refactor",
+            "scope": "core-*",
+            "release": "minor"
+          },
+          {
+            "type": "refactor",
+            "release": "patch"
+          }
+        ],
+        "parserOpts": {
+          "noteKeywords": [
+            "BREAKING CHANGE",
+            "BREAKING CHANGES",
+            "BREAKING"
+          ]
+        }
+      }
+    ],
+    [
+      "@semantic-release/release-notes-generator",
+      {
+        "preset": "conventionalcommits",
+        "parserOpts": {
+          "noteKeywords": [
+            "BREAKING CHANGE",
+            "BREAKING CHANGES",
+            "BREAKING"
+          ]
+        },
+        "presetConfig": {
+          "types": [
+            {
+              "type": "feat",
+              "section": "Features"
+            },
+            {
+              "type": "fix",
+              "section": "Bug Fixes"
+            },
+            {
+              "type": "chore",
+              "section": "Internal",
+              "hidden": false
+            },
+            {
+              "type": "refactor",
+              "section": "Internal",
+              "hidden": false
+            },
+            {
+              "type": "perf",
+              "section": "Internal",
+              "hidden": false
+            }
+          ]
+        }
+      }
+    ],
+    "@semantic-release/changelog",
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "pnpm exec prettier --write CHANGELOG.md"
+      }
+    ],
+    "@semantic-release/npm",
+    "@semantic-release/git",
+    "@semantic-release/github"
+  ]
+}

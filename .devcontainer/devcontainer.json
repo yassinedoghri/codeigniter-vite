@@ -1,0 +1,45 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/php
+{
+  "name": "CodeIgniter Vite",
+  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+  "build": {
+    // Path is relataive to the devcontainer.json file.
+    "dockerfile": "Dockerfile"
+  },
+  "workspaceMount": "source=${localWorkspaceFolder}/..,target=/workspaces,type=bind",
+  "workspaceFolder": "/workspaces/codeigniter-vite",
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [8080],
+
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/node:1": {}
+  },
+
+  // Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": "composer install && pnpm install",
+
+  // Configure tool-specific properties.
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "markdown.extension.toc.levels": "2..3"
+      },
+      "extensions": [
+        "bmewburn.vscode-intelephense-client",
+        "breezelin.phpstan",
+        "eamodio.gitlens",
+        "esbenp.prettier-vscode",
+        "github.vscode-github-actions",
+        "pflannery.vscode-versionlens",
+        "streetsidesoftware.code-spell-checker",
+        "yzhang.markdown-all-in-one"
+      ]
+    }
+  }
+}
