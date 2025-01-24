@@ -109,6 +109,15 @@ instead.
                `./${env.VITE_RESOURCES_DIR ?? "app/Resources"}/styles/**/*.css`,
              ),
            ],
+           external: [
+             new RegExp(
+               path.resolve(
+                 __dirname,
+                 `./${env.VITE_RESOURCES_DIR ?? "app/Resources"}/(js|styles)/.*(_.*[/|.js|.ts|.css]).*`,
+               ),
+             ),
+             /node_modules/,
+           ],
            preserveEntrySignatures: true,
            output: [
              {

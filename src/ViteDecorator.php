@@ -22,6 +22,19 @@ class ViteDecorator implements ViewDecoratorInterface
         foreach ($viteConfig->routesAssets as $mapping) {
             foreach ($mapping['routes'] as $route) {
                 if (url_is($route)) {
+                    if (array_key_exists('exclude', $mapping)) {
+                        $exclude = false;
+                        foreach ($mapping['exclude'] as $excludedRoute) {
+                            if (url_is($excludedRoute)) {
+                                $exclude = true;
+                            }
+                        }
+
+                        if ($exclude) {
+                            continue;
+                        }
+                    }
+
                     foreach ($mapping['assets'] as $asset) {
                         $assetLinks .= service('vite')
                             ->asset($asset);

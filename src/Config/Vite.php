@@ -21,7 +21,7 @@ class Vite extends BaseConfig
     public string $manifestCacheName = 'vite-manifest';
 
     /**
-     * @var array<array{routes:list<string>,assets:list<string>}>
+     * @var array<array{routes:list<string>,exclude?:list<string>,assets:list<string>}>
      */
     public array $routesAssets = [];
 
