@@ -1,6 +1,6 @@
 {
   "name": "codeigniter-vite",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A simple ViteJS integration for CodeIgniter4 projects.",
   "license": "MIT",
   "private": true,
