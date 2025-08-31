@@ -1,15 +1,15 @@
 # CodeIgniter Vite
 
 An opinionated Vite integration for [CodeIgniter4](https://codeigniter.com/)
-projects.
+projects, just so that you don't have to think about it!
 
 ---
 
-Easily manage and bundle JavaScript, TypeScript and CSS files with a `Resources`
-folder in your CodeIgniter app:
+Easily manage and bundle JavaScript, TypeScript and CSS files with a `resources`
+folder in the root of your CodeIgniter project:
 
 ```sh
-app/Resources/
+resources/
 ├── js # your JavaScript and/or TypeScript files
 ├── static # static files you want to copy as is
 │   ├── fonts
@@ -24,7 +24,7 @@ app/Resources/
   - [3. Bundle for production](#3-bundle-for-production)
 - [⚙️ Config reference](#️-config-reference)
   - [Routes/Assets mapping](#routesassets-mapping)
-  - [Environment Variables](#environment-variables)
+  - [Vite Environment](#vite-environment)
 - [❤️ Acknowledgments](#️-acknowledgments)
 - [📜 License](#-license)
 
@@ -34,7 +34,6 @@ app/Resources/
 
 1. Install [Node.js](https://nodejs.org/)\* with one of the following package
    managers:
-
    - `npm` (should be included with Node install)
    - `pnpm` (recommended),
    - `yarn`
@@ -63,81 +62,31 @@ instead.
    composer require yassinedoghri/codeigniter-vite
    ```
 
-2. install Vite with `@rollup/plugin-multi-entry`:
+2. install Vite with
+   [Vite plugin CodeIgniter](https://github.com/yassinedoghri/vite-plugin-codeigniter):
 
    ```bash
    # using npm
-   npm install --save-dev vite @rollup/plugin-multi-entry
+   npm install --save-dev vite vite-plugin-codeigniter
 
    # using pnpm
-   pnpm add -D vite @rollup/plugin-multi-entry
+   pnpm add -D vite vite-plugin-codeigniter
 
    # using yarn
-   yarn add -D vite @rollup/plugin-multi-entry
+   yarn add -D vite vite-plugin-codeigniter
    ```
 
-3. copy the following `vite.config.js` file in the root of your CodeIgniter
+3. add the plugin to your `vite.config.js` file in the root of your CodeIgniter
    project:
 
    ```js
    // vite.config.js
-   import multi from "@rollup/plugin-multi-entry";
-   import path from "path";
-   import { defineConfig, loadEnv } from "vite";
+   import { defineConfig } from "vite";
+   import codeigniter from "vite-plugin-codeigniter";
 
-   export default defineConfig(({ mode }) => {
-     const env = Object.assign(process.env, loadEnv(mode, process.cwd()));
-
-     return {
-       root: path.resolve(__dirname, env.VITE_RESOURCES_DIR ?? "app/Resources"),
-       publicDir: "./static",
-       build: {
-         outDir: path.resolve(
-           __dirname,
-           `public/${env.VITE_ASSETS_DIR ?? "assets"}`,
-         ),
-         assetsDir: "",
-         manifest: env.VITE_MANIFEST ?? ".vite/manifest.json",
-         rollupOptions: {
-           input: [
-             path.resolve(
-               __dirname,
-               `${env.VITE_RESOURCES_DIR ?? "app/Resources"}/js/**/*.{js,ts}`,
-             ),
-             path.resolve(
-               __dirname,
-               `./${env.VITE_RESOURCES_DIR ?? "app/Resources"}/styles/**/*.css`,
-             ),
-           ],
-           external: [
-             new RegExp(
-               path.resolve(
-                 __dirname,
-                 `./${env.VITE_RESOURCES_DIR ?? "app/Resources"}/(js|styles)/.*(_.*[/|.js|.ts|.css]).*`,
-               ),
-             ),
-             /node_modules/,
-           ],
-           preserveEntrySignatures: true,
-           output: [
-             {
-               dir: path.resolve(
-                 __dirname,
-                 `public/${env.VITE_ASSETS_DIR ?? "assets"}`,
-               ),
-               preserveModules: true,
-             },
-           ],
-         },
-       },
-       server: {
-         host: env.VITE_SERVER_HOST ?? "localhost",
-         port: env.VITE_SERVER_PORT ?? 5173,
-         strictPort: true,
-       },
-       plugins: [multi({ preserveModules: true })],
-     };
-   });
+   export default defineConfig(() => ({
+     plugins: [codeigniter()],
+   }));
    ```
 
 4. Add Vite's scripts to your `package.json`:
@@ -153,10 +102,10 @@ instead.
    }
    ```
 
-5. Create the `Resources` folder in your CodeIgniter app folder:
+5. Create the `resources` folder in the root of your CodeIgniter project:
 
    ```sh
-   app/Resources/
+   resources/
    ├── js # your JavaScript and/or TypeScript files
    ├── static # files you want to copy as is
    │   ├── fonts
@@ -206,8 +155,7 @@ pnpm run dev
 yarn run dev
 ```
 
-By default, the server will launch @http://localhost:5173. See the
-[config reference](#️-config-reference) to change the host or port.
+By default, the server will launch @http://localhost:5173.
 
 ### 3. Bundle for production
 
@@ -255,24 +203,18 @@ public array $routesAssets = [
 ];
 ```
 
-### Environment Variables
-
-You can tweak the following environment variables to your liking:
-
-```ini
-VITE_ENVIRONMENT="production"
-
-VITE_SERVER_HOST="localhost"
-VITE_SERVER_PORT=5173
-VITE_SERVER_ORIGIN="http://localhost:5173"
-
-VITE_RESOURCES_DIR="app/Resources"
-VITE_ASSETS_DIR="assets"
-VITE_MANIFEST=".vite/manifest.json"
-```
-
 Note that you can use the `*` wildcard to match any other applicable characters
 in the routes.
+
+### Vite Environment
+
+By default, CodeIgniter will look for production assets, set the vite
+environment to `development` to load your dev assets.
+
+```ini
+# .env
+vite.environment="development"
+```
 
 ## ❤️ Acknowledgments
 

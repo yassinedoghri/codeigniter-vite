@@ -1,7 +1,7 @@
 {
   "name": "codeigniter-vite",
   "version": "1.1.0",
-  "description": "A simple ViteJS integration for CodeIgniter4 projects.",
+  "description": "An opinionated Vite integration for CodeIgniter4 projects.",
   "license": "MIT",
   "private": true,
   "author": {
@@ -19,13 +19,13 @@
   },
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/exec": "^6.0.3",
+    "@semantic-release/exec": "^7.1.0",
     "@semantic-release/git": "^10.0.1",
     "commitizen": "^4.3.1",
-    "conventional-changelog-conventionalcommits": "^8.0.0",
+    "conventional-changelog-conventionalcommits": "^9.1.0",
     "cz-conventional-changelog": "^3.3.0",
-    "prettier": "^3.4.2",
-    "semantic-release": "^24.2.1"
+    "prettier": "^3.6.2",
+    "semantic-release": "^24.2.7"
   },
   "config": {
     "commitizen": {

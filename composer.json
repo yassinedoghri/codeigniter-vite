@@ -1,6 +1,6 @@
 {
   "name": "yassinedoghri/codeigniter-vite",
-  "description": "A simple ViteJS integration for CodeIgniter4 projects.",
+  "description": "An opinionated Vite integration for CodeIgniter4 projects.",
   "type": "library",
   "license": "MIT",
   "keywords": [
@@ -56,15 +56,15 @@
     "php": ">=8.1"
   },
   "require-dev": {
-    "codeigniter/phpstan-codeigniter": "v1.5.1",
-    "codeigniter4/framework": "v4.5.7",
+    "codeigniter/phpstan-codeigniter": "^1.5.4",
+    "codeigniter4/framework": "^v4.6.0",
     "phpstan/extension-installer": "^1.4.3",
-    "phpstan/phpstan": "^2.1.1",
-    "rector/rector": "^2.0.6",
-    "symplify/coding-standard": "^12.2.3",
-    "symplify/easy-coding-standard": "^12.5.5",
-    "pestphp/pest": "v3.7.1",
-    "pestphp/pest-plugin-type-coverage": "v3.2.3"
+    "phpstan/phpstan": "^2.1.22",
+    "rector/rector": "^2.1.4",
+    "symplify/coding-standard": "^12.4.3",
+    "symplify/easy-coding-standard": "^12.5.24",
+    "pestphp/pest": "^3.8.4",
+    "pestphp/pest-plugin-type-coverage": "^3.6.1"
   },
   "config": {
     "allow-plugins": {

@@ -42,7 +42,7 @@ class ViteManifest
         $this->loadError = false;
     }
 
-    public function renderAssetLinks(string $path, string $assetsDir = '', bool $isModulePreload = false): string
+    public function renderAssetLinks(string $path, bool $isModulePreload = false): string
     {
         $html = '';
         if (array_key_exists($path, $this->chunks)) {
@@ -55,10 +55,10 @@ class ViteManifest
 
             // import dependencies first for faster js loading
             foreach ($chunk->imports as $importPath) {
-                $html .= $this->renderAssetLinks($importPath, $assetsDir, true);
+                $html .= $this->renderAssetLinks($importPath, true);
             }
 
-            $html .= render_asset_link($chunk->file, $assetsDir, $isModulePreload);
+            $html .= render_asset_link($chunk->file, '', $isModulePreload);
         }
 
         return $html;

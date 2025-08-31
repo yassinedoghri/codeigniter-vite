@@ -24,15 +24,13 @@ class Vite
             return render_asset_link($path, $this->config->serverOrigin);
         }
 
-        $manifestPath = implode('/', [$this->config->assetsDir, $this->config->manifest]);
-
         // get production asset
         if (! $this->manifest instanceof ViteManifest) {
             /** @var ViteManifest|null $cachedManifest */
             $cachedManifest = cache($this->config->manifestCacheName);
 
             if ($cachedManifest === null) {
-                $cachedManifest = new ViteManifest($manifestPath);
+                $cachedManifest = new ViteManifest($this->config->manifest);
                 cache()
                     ->save($this->config->manifestCacheName, $cachedManifest, DECADE);
             }
@@ -42,10 +40,10 @@ class Vite
 
         if ($this->manifest->loadError) {
             throw new RuntimeException(
-                "Could not load vite manifest: <strong>{$manifestPath}</strong> file not found! Forgot to run `vite build`?"
+                "Could not load vite manifest: <strong>{$this->config->manifest}</strong> file not found! Forgot to run `vite build`?"
             );
         }
 
-        return $this->manifest->renderAssetLinks($path, '/' . $this->config->assetsDir);
+        return $this->manifest->renderAssetLinks($path);
     }
 }
