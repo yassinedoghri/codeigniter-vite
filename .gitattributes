@@ -3,14 +3,14 @@
 # the --prefer-dist option selected. Used to remove development
 # specific files so user has a clean download.
 
-/.changeset/       export-ignore
 /.devcontainer/    export-ignore
 /.github/          export-ignore
 /tests/            export-ignore
-/vite-plugin/      export-ignore
 /.gitattributes    export-ignore
 /.gitignore        export-ignore
 /.prettierrc.json  export-ignore
+/.releaserc        export-ignore
+/CHANGELOG.md      export-ignore
 /CONTRIBUTING.md   export-ignore
 /ecs.php           export-ignore
 /package.json      export-ignore
