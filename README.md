@@ -1,7 +1,17 @@
-# CodeIgniter Vite
+<div align="center">
+  <img width="180" src="./src/logo.svg" alt="CodeIgniter Vite logo" />
+
+# CodeIgniter Vite 🔥⚡
+
+[![Latest Stable Version](https://poser.pugx.org/yassinedoghri/codeigniter-vite/v)](https://packagist.org/packages/yassinedoghri/codeigniter-vite)
+[![Total Downloads](https://poser.pugx.org/yassinedoghri/codeigniter-vite/downloads)](https://packagist.org/packages/yassinedoghri/codeigniter-vite)
+[![License](https://img.shields.io/github/license/yassinedoghri/codeigniter-vite?color=green)](https://packagist.org/packages/yassinedoghri/codeigniter-vite)
+[![PHP Version Require](https://poser.pugx.org/yassinedoghri/codeigniter-vite/require/php)](https://packagist.org/packages/yassinedoghri/codeigniter-vite)
 
 An opinionated Vite integration for [CodeIgniter4](https://codeigniter.com/)
 projects, just so that you don't have to think about it!
+
+</div>
 
 ---
 
