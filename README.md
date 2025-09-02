@@ -73,7 +73,7 @@ instead.
    ```
 
 2. install Vite with
-   [Vite plugin CodeIgniter](https://github.com/yassinedoghri/vite-plugin-codeigniter):
+   [vite-plugin-codeigniter](https://github.com/yassinedoghri/vite-plugin-codeigniter):
 
    ```bash
    # using npm
