@@ -22,9 +22,7 @@ Easily manage and bundle JavaScript / TypeScript and CSS files within a
 ```sh
 resources/
 ├── js # your JavaScript and/or TypeScript files
-├── static # static files you want to copy as is
-│   ├── fonts
-│   └── images
+├── static # files you want to copy as is. Eg. images, fonts, etc.
 └── styles # your CSS files
 ```
 
@@ -160,9 +158,7 @@ php spark vite:setup
    ```sh
    resources/
    ├── js # your JavaScript and/or TypeScript files
-   ├── static # files you want to copy as is
-   │   ├── fonts
-   │   └── images
+   ├── static # files you want to copy as is. Eg. images, fonts, etc.
    └── styles # your CSS files
    ```
 
