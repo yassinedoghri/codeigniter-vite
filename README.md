@@ -9,22 +9,24 @@
 [![PHP Version Require](https://poser.pugx.org/yassinedoghri/codeigniter-vite/require/php)](https://packagist.org/packages/yassinedoghri/codeigniter-vite)
 
 An opinionated [Vite](https://vite.dev/) integration for
-[CodeIgniter4](https://codeigniter.com/) projects, just so that you don't have
-to think about it!
+[CodeIgniter4](https://codeigniter.com/) projects,\
+just so that you don't have to think about it!
 
 </div>
 
 ---
 
-Easily manage and bundle JavaScript / TypeScript and CSS files within a
-`resources` folder in the root of your CodeIgniter project:
+Easily organize and bundle JavaScript, TypeScript, and CSS files within a
+`resources` folder at the root of your CodeIgniter4 project:
 
 ```sh
 resources/
-├── js # your JavaScript and/or TypeScript files
-├── static # files you want to copy as is. Eg. images, fonts, etc.
-└── styles # your CSS files
+├── js/ # your JavaScript and/or TypeScript files
+├── static/ # files you want to copy as is. Eg. images, fonts, etc.
+└── styles/ # your CSS files
 ```
+
+---
 
 - [🚀 Getting started](#-getting-started)
   - [0. Prerequisites](#0-prerequisites)
@@ -157,9 +159,9 @@ php spark vite:setup
 
    ```sh
    resources/
-   ├── js # your JavaScript and/or TypeScript files
-   ├── static # files you want to copy as is. Eg. images, fonts, etc.
-   └── styles # your CSS files
+   ├── js/ # your JavaScript and/or TypeScript files
+   ├── static/ # files you want to copy as is. Eg. images, fonts, etc.
+   └── styles/ # your CSS files
    ```
 
 ### 3. Working with Vite's dev server
