@@ -1,3 +1,15 @@
+## [2.1.0](https://github.com/yassinedoghri/codeigniter-vite/compare/v2.0.0...v2.1.0) (2025-09-09)
+
+### Features
+
+- add Setup command for an automatic initialization + update README
+  ([4b30300](https://github.com/yassinedoghri/codeigniter-vite/commit/4b303005e8d1778e7bad682cf4b180e7607f6af7))
+
+### Internal
+
+- remove inexistant files and folders from .gitattributes list
+  ([cac5d04](https://github.com/yassinedoghri/codeigniter-vite/commit/cac5d042dab49d5d75b9bdc6174bb104495a1ec5))
+
 ## [2.0.0](https://github.com/yassinedoghri/codeigniter-vite/compare/v1.1.0...v2.0.0) (2025-08-31)
 
 ### ⚠ BREAKING CHANGES
