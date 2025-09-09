@@ -1,5 +1,5 @@
 # Extending https://github.com/devcontainers/images/blob/main/src/php
-FROM "mcr.microsoft.com/devcontainers/php:1-8.2-bullseye"
+FROM "mcr.microsoft.com/devcontainers/php:8.2"
 
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 

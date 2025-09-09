@@ -8,15 +8,16 @@
 [![License](https://img.shields.io/github/license/yassinedoghri/codeigniter-vite?color=green)](https://packagist.org/packages/yassinedoghri/codeigniter-vite)
 [![PHP Version Require](https://poser.pugx.org/yassinedoghri/codeigniter-vite/require/php)](https://packagist.org/packages/yassinedoghri/codeigniter-vite)
 
-An opinionated Vite integration for [CodeIgniter4](https://codeigniter.com/)
-projects, just so that you don't have to think about it!
+An opinionated [Vite](https://vite.dev/) integration for
+[CodeIgniter4](https://codeigniter.com/) projects, just so that you don't have
+to think about it!
 
 </div>
 
 ---
 
-Easily manage and bundle JavaScript, TypeScript and CSS files with a `resources`
-folder in the root of your CodeIgniter project:
+Easily manage and bundle JavaScript / TypeScript and CSS files within a
+`resources` folder in the root of your CodeIgniter project:
 
 ```sh
 resources/
@@ -29,12 +30,14 @@ resources/
 
 - [🚀 Getting started](#-getting-started)
   - [0. Prerequisites](#0-prerequisites)
-  - [1. Setup](#1-setup)
-  - [2. Run the dev environment](#2-run-the-dev-environment)
-  - [3. Bundle for production](#3-bundle-for-production)
+  - [1. Installation](#1-installation)
+  - [2. Initial setup](#2-initial-setup)
+  - [3. Working with Vite's dev server](#3-working-with-vites-dev-server)
+- [📦 Bundle for production](#-bundle-for-production)
 - [⚙️ Config reference](#️-config-reference)
   - [Routes/Assets mapping](#routesassets-mapping)
   - [Vite Environment](#vite-environment)
+  - [Other properties](#other-properties)
 - [❤️ Acknowledgments](#️-acknowledgments)
 - [📜 License](#-license)
 
@@ -48,7 +51,10 @@ resources/
    - `pnpm` (recommended),
    - `yarn`
 
-2. create a `package.json` file:
+   \*You may want to use [Deno](https://deno.com/) or [Bun](https://bun.sh/)
+   instead.
+
+2. Create a `package.json` file:
 
    ```sh
    # using npm
@@ -61,18 +67,15 @@ resources/
    yarn init
    ```
 
-\*You may want to use [Deno](https://deno.com/) or [Bun](https://bun.sh/)
-instead.
+### 1. Installation
 
-### 1. Setup
-
-1. install `codeigniter-vite` using composer:
+1. Install `codeigniter-vite` using composer:
 
    ```sh
    composer require yassinedoghri/codeigniter-vite
    ```
 
-2. install Vite with
+2. Install Vite with
    [vite-plugin-codeigniter](https://github.com/yassinedoghri/vite-plugin-codeigniter):
 
    ```bash
@@ -86,8 +89,44 @@ instead.
    yarn add -D vite vite-plugin-codeigniter
    ```
 
-3. add the plugin to your `vite.config.js` file in the root of your CodeIgniter
-   project:
+### 2. Initial setup
+
+Run the following command. This command handles steps 1-4 of
+[Manual Setup](#manual-setup) for you.
+
+```sh
+php spark vite:setup
+```
+
+#### Manual Setup
+
+> [!NOTE]  
+> You may skip this if you've used the setup command above.
+
+1. Copy the `Vite.php` file from
+   `vendor/yassinedoghri/codeigniter-vite/src/Config` into your project's config
+   folder, update the namespace to `Config` and have the class extend the
+   original class like so:
+
+   ```php
+   <?php
+   // app/Config/Vite.php
+
+   declare(strict_types=1);
+
+   namespace Config;
+
+   use CodeIgniterVite\Config\Vite as CodeIgniterViteConfig;
+
+   class Vite extends CodeIgniterViteConfig
+   {
+      // ...
+   }
+   ```
+
+2. Create your `vite.config.js` file in your project's root and add the
+   [vite-plugin-codeigniter](https://github.com/yassinedoghri/vite-plugin-codeigniter)
+   plugin:
 
    ```js
    // vite.config.js
@@ -95,11 +134,15 @@ instead.
    import codeigniter from "vite-plugin-codeigniter";
 
    export default defineConfig(() => ({
+     server: {
+       port: 5173,
+       strictPort: true, // prevents port from changing to something other than 5173
+     },
      plugins: [codeigniter()],
    }));
    ```
 
-4. Add Vite's scripts to your `package.json`:
+3. Add Vite's scripts to your `package.json`:
 
    ```json
    {
@@ -112,7 +155,7 @@ instead.
    }
    ```
 
-5. Create the `resources` folder in the root of your CodeIgniter project:
+4. Create the `resources` folder in the root of your project:
 
    ```sh
    resources/
@@ -123,51 +166,38 @@ instead.
    └── styles # your CSS files
    ```
 
-6. Edit your `app/Config/Vite.php` config file to inject your styles and scripts
-   in your routes:
+### 3. Working with Vite's dev server
 
-   ```php
-    <?php
-    // app/Config/Vite.php
+1. Set Vite environment to `development` in your `.env`:
 
-    declare(strict_types=1);
-
-    namespace Config;
-
-    use CodeIgniterVite\Config\Vite as ViteConfig;
-
-    class Vite extends ViteConfig
-    {
-        public array $routesAssets = [
-            [
-                'routes' => ['*'],
-                'assets'  => ['styles/index.css'],
-            ],
-        ];
-    }
+   ```ini
+   # .env
+   vite.environment="development"
    ```
 
-7. That's all! Your assets will get automatically linked in the `<head>` of your
-   routes depending on the mapping you define.
+2. Run Vite's dev server with:
 
-### 2. Run the dev environment
+   ```sh
+   # using npm
+   npm run dev
 
-Run Vite's dev server with:
+   # using pnpm
+   pnpm run dev
 
-```sh
-# using npm
-npm run dev
+   # using yarn
+   yarn run dev
+   ```
 
-# using pnpm
-pnpm run dev
+   By default, the server will launch @http://localhost:5173.
 
-# using yarn
-yarn run dev
-```
+3. **Work your magic!** 🪄
 
-By default, the server will launch @http://localhost:5173.
+> [!IMPORTANT]  
+> Add your JS/TS, and CSS files in the `resources` directory and inject them
+> into your pages by using the [routes/assets mapping](#routesassets-mapping) in
+> your `app/Config/Vite.php` file.
 
-### 3. Bundle for production
+## 📦 Bundle for production
 
 For production, run the build command:
 
@@ -213,18 +243,47 @@ public array $routesAssets = [
 ];
 ```
 
-Note that you can use the `*` wildcard to match any other applicable characters
-in the routes.
+> [!NOTE]  
+> You can use the `*` wildcard to match any other applicable characters in the
+> routes.
 
 ### Vite Environment
 
-By default, CodeIgniter will look for production assets, set the vite
-environment to `development` to load your dev assets.
+Vite environment is set to `production` by default, meaning it's looking for
+assets in the `public/assets` folder.\
+By setting it to `development` in your `.env`, it will instead point to Vite's
+dev server.
 
 ```ini
 # .env
 vite.environment="development"
 ```
+
+### Other properties
+
+You can tweak CodeIgniterVite's config if needed:
+
+```php
+// app/Config/Vite.php
+
+// ...
+public string $serverOrigin = 'http://localhost:5173';
+
+public string $resourcesDir = 'resources';
+
+public string $assetsDir = 'assets';
+
+public string $manifest = '.vite/manifest.json';
+
+public string $manifestCacheName = 'vite-manifest';
+// ...
+```
+
+> [!IMPORTANT]  
+> These defaults are in sync with `vite-plugin-codeigniter`'s defaults. If you
+> edit these, make sure you set the same values for
+> [`vite-plugin-codeigniter`'s options](https://github.com/yassinedoghri/vite-plugin-codeigniter/blob/main/README.md#%EF%B8%8F-options)
+> in your `vite.config.js` file.
 
 ## ❤️ Acknowledgments
 
@@ -232,7 +291,8 @@ This wouldn't have been possible without the amazing work of the
 [CodeIgniter](https://codeigniter.com/) team.
 
 Inspired by
-[codeigniter-vitejs](https://github.com/mihatorikei/codeigniter-vitejs).
+[codeigniter-vitejs](https://github.com/mihatorikei/codeigniter-vitejs) &
+[codeigniter4/shield](https://github.com/codeigniter4/shield/).
 
 ## 📜 License
 

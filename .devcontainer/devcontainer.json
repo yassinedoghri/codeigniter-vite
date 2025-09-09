@@ -15,12 +15,11 @@
 
   // Features to add to the dev container. More info: https://containers.dev/features.
   "features": {
-    "ghcr.io/devcontainers/features/git:1": {},
     "ghcr.io/devcontainers/features/node:1": {}
   },
 
   // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "composer install && pnpm install",
+  "postCreateCommand": "composer install && pnpm install && echo \"xdebug.mode = debug,coverage\" >> /usr/local/etc/php/conf.d/xdebug.ini",
 
   // Configure tool-specific properties.
   "customizations": {
